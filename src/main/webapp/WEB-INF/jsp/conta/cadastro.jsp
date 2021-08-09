@@ -19,6 +19,8 @@
 	<c:import url="/WEB-INF/jsp/menu.jsp" />
 
 	<div class="container">
+		<h2>Cadastro de Contas</h2>
+
 		<c:if test="${not empty mensagem}">
 			<div class="alert alert-success alert-dismissible">
 				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -26,35 +28,18 @@
 			</div>
 		</c:if>
 
-		<h3>
-			<a href="/conta">Incluir uma nova conta</a>
-		</h3>
+		<form action="/conta/incluir" method="post">
+			<div class="form-group">
+				<label>Descrição:</label> <input type="text" class="form-control"
+					placeholder="Informe a descrição" name="descricao">
+			</div>
 
-		<c:if test="${not empty contas}">
-			<h2>Lista de contas: ${contas.size()}</h2>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Conta</th>
-						<th>Período</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="conta" items="${contas}">
-						<tr>
-							<td>${conta.descricao}</td>
-							<td>${conta.periodo}</td>
-							<td><a href="/conta/excluir">Excluir</a></td>
-							<td><a href="/conta/consultar">Detalhar</a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</c:if>
-		<c:if test="${empty contas}">
-			<h2>Não existem contas cadastradas!!!</h2>
-		</c:if>
+			<div class="form-group">
+				<label>Período:</label> <input type="text" class="form-control"
+					placeholder="Informe o período" name="periodo">
+			</div>
+			<button type="submit" class="btn btn-default">Salvar</button>
+		</form>
 
 	</div>
 

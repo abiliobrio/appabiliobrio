@@ -7,6 +7,11 @@ public class Conta {
 	private float saldo;
 	private boolean status;
 	
+	public Conta(String descricao, int periodo) {
+		super();
+		this.descricao = descricao;
+		this.periodo = periodo;
+	}
 	public String getDescricao() {
 		return descricao;
 	}

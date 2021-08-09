@@ -5,9 +5,7 @@ import code.com.desafio.appabiliobrio.model.domain.Conta;
 public class ContaTeste {
 
 	public static void main(String[] args) {
-		Conta conta = new Conta();
-		conta.setDescricao("Caixa");
-		conta.setPeriodo(821);
+		Conta conta = new Conta("Caixa",821);
 		conta.setSaldo(1000);
 		conta.setStatus(true);
 		System.out.println("Conta: " + conta);
