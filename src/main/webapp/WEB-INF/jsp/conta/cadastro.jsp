@@ -29,14 +29,15 @@
 		</c:if>
 
 		<form action="/conta/incluir" method="post">
+
 			<div class="form-group">
 				<label>Descrição:</label> <input type="text" class="form-control"
 					placeholder="Informe a descrição" name="descricao">
 			</div>
 
 			<div class="form-group">
-				<label>Período:</label> <input type="text" class="form-control"
-					placeholder="Informe o período" name="periodo">
+				<label>Tipo da Conta:</label> <input type="text" class="form-control"
+					placeholder="Informe o tipo" name="tipoConta">
 			</div>
 			<button type="submit" class="btn btn-default">Salvar</button>
 		</form>

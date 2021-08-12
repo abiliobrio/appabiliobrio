@@ -35,18 +35,22 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<th>Id</th>
 						<th>Conta</th>
-						<th>Período</th>
+						<th>Tipo</th>
+						<th>Status</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="conta" items="${contas}">
 						<tr>
+							<td>${conta.id}</td>
 							<td>${conta.descricao}</td>
-							<td>${conta.periodo}</td>
-							<td><a href="/conta/excluir">Excluir</a></td>
-							<td><a href="/conta/consultar">Detalhar</a></td>
+							<td>${conta.tipoConta.descricao}</td>
+							<td>${conta.status.descricao}</td>
+							<td><a href="/conta/${conta.id}/excluir">Excluir</a></td>
+							<td><a href="/conta/${conta.id}/consultar">Detalhar</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
