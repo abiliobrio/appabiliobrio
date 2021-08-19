@@ -3,6 +3,7 @@ package code.com.desafio.appabiliobrio.model.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import code.com.desafio.appabiliobrio.model.domain.Conta;
@@ -14,9 +15,12 @@ public class ContaService {
 	@Autowired
 	private ContaRepository contaRepository;
 	
-	public List<Conta> obterLista() {
+	public List<Conta> obterLista(){
+		return (List<Conta>) contaRepository.findAll(Sort.by(Sort.Direction.ASC, "descricao"));
+	}
 
-		return (List<Conta>) contaRepository.findAll();
+	public List<Conta> obterLista(String campo){
+		return (List<Conta>) contaRepository.findAll(Sort.by(Sort.Direction.ASC, campo));
 	}
 
 	public void incluir(Conta conta) {
@@ -30,5 +34,7 @@ public class ContaService {
 	public Conta obterPorId(Integer id) {
 		return contaRepository.findById(id).orElse(null);
 	}
+	
+	
 	
 }

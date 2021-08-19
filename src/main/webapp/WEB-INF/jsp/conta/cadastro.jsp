@@ -18,8 +18,21 @@
 
 	<c:import url="/WEB-INF/jsp/menu.jsp" />
 
+	<c:set var="titulo" value="Cadastro de Contas" />
+	<c:set var="rota" value="/conta/incluir" />
+	<c:set var="metodo" value="post" />
+	<c:set var="botao" value="Cadastrar" />
+
+	<c:if test="${not empty conta}">
+		<c:set var="titulo" value="Consulta de Contas" />
+		<c:set var="rota" value="/voltar" />
+		<c:set var="metodo" value="get" />
+		<c:set var="botao" value="Voltar" />
+
+	</c:if>
+
 	<div class="container">
-		<h2>Cadastro de Contas</h2>
+		<h2>${titulo}</h2>
 
 		<c:if test="${not empty mensagem}">
 			<div class="alert alert-success alert-dismissible">
@@ -28,18 +41,18 @@
 			</div>
 		</c:if>
 
-		<form action="/conta/incluir" method="post">
+		<form action="${rota}" method="${metodo}">
 
 			<div class="form-group">
-				<label>Descrição:</label> <input type="text" class="form-control"
-					placeholder="Informe a descrição" name="descricao">
+				<label>Conta:</label> <input type="text" class="form-control"
+					placeholder="Informe a descrição" value="${conta.descricao}" name="descricao" placeholder="Entre com o nome da conta">
 			</div>
 
 			<div class="form-group">
-				<label>Tipo da Conta:</label> <input type="text" class="form-control"
-					placeholder="Informe o tipo" name="tipoConta">
+				<label>Tipo da Conta:</label> <input type="text"
+					class="form-control" value="${conta.tipoConta}" name="tipoConta" placeholder="Entre com o tipo da conta">
 			</div>
-			<button type="submit" class="btn btn-default">Salvar</button>
+			<button type="submit" class="btn btn-default">${botao}</button>
 		</form>
 
 	</div>

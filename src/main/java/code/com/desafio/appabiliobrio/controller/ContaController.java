@@ -9,9 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import code.com.desafio.appabiliobrio.model.domain.Conta;
-import code.com.desafio.appabiliobrio.model.domain.Status;
 import code.com.desafio.appabiliobrio.model.service.ContaService;
 
 @Controller
@@ -53,11 +53,12 @@ public class ContaController {
 	}
 
 	@GetMapping(value = "/conta/{id}/consultar")
-	public String consultar(@PathVariable Integer id) {
+	public String consultar(Model model, @PathVariable Integer id) {
 
 		Conta conta = contaService.obterPorId(id);
+		model.addAttribute("conta", conta);
 
-		return "";
+		return telaCadastro();
 	}
 
 	@GetMapping(value = "/conta/lista")
@@ -68,4 +69,20 @@ public class ContaController {
 		return "conta/lista";
 	}
 
+	@GetMapping(value = "/voltar")
+	public String voltar(Model model) {
+
+		model.addAttribute("contas", contaService.obterLista());
+
+		return "redirect:conta/lista";
+	}
+	
+	@PostMapping(value = "/conta/ordenar")
+	public String ordenar(Model model, @RequestParam String sortBy) {
+		
+		model.addAttribute("contas", contaService.obterLista(sortBy));
+		
+		return "conta/lista";
+	}
+	
 }
