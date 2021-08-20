@@ -1,33 +1,30 @@
 package code.com.desafio.appabiliobrio.configuration;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Properties;
 
-import org.apache.commons.dbcp2.BasicDataSource;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @Profile("homheroku")
 public class DataConfigurationHomHerokuPostgreSQL {
 	
-	@Bean
-    public BasicDataSource dataSource() throws URISyntaxException {
-        URI dbUri = new URI(System.getenv("SPRING_DATABASE_URL"));
+	 @Value("${spring.datasource.url}")
+	  private String dbUrl;
 
-        String username = dbUri.getUserInfo().split(":")[0];
-        String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
-
-        BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setUrl(dbUrl);
-        basicDataSource.setUsername(username);
-        basicDataSource.setPassword(password);
-
-        return basicDataSource;
-    }	
+	  @Bean
+	  public DataSource dataSource() {
+	      HikariConfig config = new HikariConfig();
+	      config.setJdbcUrl(dbUrl);
+	      return new HikariDataSource(config);
+	  }	
 		
 	@Bean
 	public Properties aditionalProperties() {
