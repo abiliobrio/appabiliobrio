@@ -5,7 +5,8 @@
 		</div>
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="/">Home</a></li>
-			<li><a href="/conta/lista">Plano de Contas</a></li>
+			<li><a href="/usuario/lista">Usuários</a></li>
+			<li><a href="/conta/lista">Contas</a></li>
 		</ul>
 	</div>
 </nav>

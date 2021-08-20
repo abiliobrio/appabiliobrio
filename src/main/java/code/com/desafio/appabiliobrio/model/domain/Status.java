@@ -2,7 +2,7 @@ package code.com.desafio.appabiliobrio.model.domain;
 
 public enum Status {
 	
-	  ATIVO("Ativo"), INATIVO("Inativo"), CANCELADO("Cancelado");
+	  ATIVO("Ativo"), INATIVO("Inativo"), CANCELADO("Cancelado"), EXCLUIDO("Excluído");
 	  
 		private String descricao;
 
@@ -25,4 +25,8 @@ public enum Status {
 	  public boolean isCancelado() {
 	    return CANCELADO.equals(this);
 	  }
+	  
+	  public boolean isExcluido() {
+		    return EXCLUIDO.equals(this);
+		  }
 }
