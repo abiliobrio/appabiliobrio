@@ -37,7 +37,7 @@ public class DataConfigurationHomHerokuPostgreSQL {
 		props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 		props.put("hibernate.show_sql", true);
 		props.put("hibernate.format_sql", true);
-		props.put("hibernate.hbm2ddl.auto", "create");
+		props.put("hibernate.hbm2ddl.auto", "update");
 
 		return props;
 	}
