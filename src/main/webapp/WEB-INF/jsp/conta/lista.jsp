@@ -38,7 +38,8 @@
 				<div class="input-group">
 
 					<select name="sortBy" class="form-control">
-						<option value="descricao">Descrição</option>
+						<option value="id">Id</option>
+						<option value="descricao">Conta</option>
 						<option value="tipoConta">Tipo da Conta</option>
 					</select>
 

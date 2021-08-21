@@ -45,13 +45,37 @@
 
 			<div class="form-group">
 				<label>Conta:</label> <input type="text" class="form-control"
-					placeholder="Informe a descrição" value="${conta.descricao}" name="descricao" placeholder="Entre com o nome da conta">
+					placeholder="Informe a descrição" value="${conta.descricao}"
+					name="descricao" placeholder="Entre com o nome da conta">
 			</div>
 
-			<div class="form-group">
-				<label>Tipo da Conta:</label> <input type="text"
-					class="form-control" value="${conta.tipoConta}" name="tipoConta" placeholder="Entre com o tipo da conta">
-			</div>
+			<c:if test="${not empty conta}">
+
+				<div class="form-group">
+					<label>Tipo da Conta:</label> <input type="text"
+						class="form-control" value="${conta.tipoConta.descricao}" name="tipoConta"
+						placeholder="Entre com o tipo da conta">
+				</div>
+
+			</c:if>
+
+			<c:if test="${empty conta}">
+
+				<select name="tipoConta" class="form-control">
+
+					<option value=""></option>
+					<c:forEach items="${tipoContaList}" var="tipoConta">
+						<option value="${tipoConta}">
+							<c:out value="${tipoConta.descricao}"></c:out>
+						</option>
+					</c:forEach>
+
+				</select>
+
+
+			</c:if>
+
+
 			<button type="submit" class="btn btn-default">${botao}</button>
 		</form>
 

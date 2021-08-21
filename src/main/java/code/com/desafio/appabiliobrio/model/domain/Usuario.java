@@ -4,9 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Usuario implements Serializable{
@@ -25,10 +29,13 @@ public class Usuario implements Serializable{
 	
 	private String senhaUsuario;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCriacaoUsuario;
 	
+	@Enumerated(EnumType.STRING)
 	private Status status;
 	
+	@Enumerated(EnumType.STRING)
 	private TipoUsuario tipoUsuario;
 	
 	public Usuario() {

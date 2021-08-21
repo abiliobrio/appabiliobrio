@@ -4,29 +4,36 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-public class Conta implements Serializable{
-	
+public class Conta implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String descricao;
-	
+
+	@Enumerated(EnumType.STRING)
 	private TipoConta tipoConta;
-	
+
 	private float saldo;
-	
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCriacao;
-	
+
+	@Enumerated(EnumType.STRING)
 	private Status status;
-	
+
 	public Conta() {
 		this.status = (Status.ATIVO);
 		this.dataCriacao = new Date();
@@ -86,7 +93,6 @@ public class Conta implements Serializable{
 		this.dataCriacao = dataCriacao;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Conta [id=" + id + ", descricao=" + descricao + ", tipoConta=" + tipoConta + ", saldo=" + saldo
@@ -124,6 +130,4 @@ public class Conta implements Serializable{
 		return true;
 	}
 
-	
-	
 }

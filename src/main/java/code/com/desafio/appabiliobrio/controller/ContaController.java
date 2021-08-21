@@ -1,6 +1,7 @@
 package code.com.desafio.appabiliobrio.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import code.com.desafio.appabiliobrio.model.domain.Conta;
+import code.com.desafio.appabiliobrio.model.domain.TipoConta;
 import code.com.desafio.appabiliobrio.model.service.ContaService;
 
 @Controller
@@ -19,8 +21,9 @@ public class ContaController {
 
 	@Autowired
 	private ContaService contaService;
+	
+	private List<TipoConta> tipoContaList = new ArrayList<TipoConta>(Arrays.asList(TipoConta.values()));
 
-	private List<Conta> colecaoConta = new ArrayList<Conta>();
 
 	@GetMapping(value = "/")
 	public String inicializa() {
@@ -28,13 +31,15 @@ public class ContaController {
 	}
 
 	@GetMapping(value = "/conta")
-	public String telaCadastro() {
+	public String telaCadastro(Model model) {
+		model.addAttribute("tipoContaList", this.tipoContaList);
 		return "conta/cadastro";
 	}
 
 	@PostMapping(value = "/conta/incluir")
-	public String incluir(Model model, Conta conta) {
-
+	public String incluir(Model model, Conta conta, @RequestParam String tipoConta) {
+		
+		conta.setTipoConta(TipoConta.valueOf(tipoConta));
 		contaService.incluir(conta);
 
 		model.addAttribute("mensagem", "Conta " + conta.getDescricao() + " incluída!!!");
@@ -58,12 +63,12 @@ public class ContaController {
 		Conta conta = contaService.obterPorId(id);
 		model.addAttribute("conta", conta);
 
-		return telaCadastro();
+		return telaCadastro(model);
 	}
 
 	@GetMapping(value = "/conta/lista")
 	public String obterlista(Model model) {
-
+		
 		model.addAttribute("contas", contaService.obterLista());
 
 		return "conta/lista";
