@@ -16,7 +16,7 @@ public class ContaService {
 	private ContaRepository contaRepository;
 	
 	public List<Conta> obterLista(){
-		return (List<Conta>) contaRepository.findAll(Sort.by(Sort.Direction.ASC, "descricao"));
+		return (List<Conta>) contaRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 
 	public List<Conta> obterLista(String campo){
