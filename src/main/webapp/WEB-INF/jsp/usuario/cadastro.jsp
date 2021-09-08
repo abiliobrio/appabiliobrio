@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <title>Bootstrap Example</title>
 <meta charset="utf-8">
@@ -21,7 +21,7 @@
 	<c:set var="titulo" value="Cadastro de Usuário" />
 	<c:set var="rota" value="/usuario/incluir" />
 	<c:set var="metodo" value="post" />
-	<c:set var="botao" value="Cadastrar" />
+	<c:set var="botao" value="Salvar" />
 
 	<c:if test="${not empty usuario}">
 		<c:set var="titulo" value="Consulta de Usuário" />

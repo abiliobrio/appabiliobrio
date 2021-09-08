@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <title>Bootstrap Example</title>
 <meta charset="utf-8">
@@ -18,14 +18,14 @@
 
 	<c:import url="/WEB-INF/jsp/menu.jsp" />
 
-	<c:set var="titulo" value="Cadastro de Contas" />
-	<c:set var="rota" value="/conta/incluir" />
+	<c:set var="titulo" value="Cadastro de Departamento" />
+	<c:set var="rota" value="/depto/incluir" />
 	<c:set var="metodo" value="post" />
 	<c:set var="botao" value="Salvar" />
 
-	<c:if test="${not empty conta}">
-		<c:set var="titulo" value="Consulta de Contas" />
-		<c:set var="rota" value="/voltar" />
+	<c:if test="${not empty depto}">
+		<c:set var="titulo" value="Consulta de Departamento" />
+		<c:set var="rota" value="/voltarDepto" />
 		<c:set var="metodo" value="get" />
 		<c:set var="botao" value="Voltar" />
 
@@ -44,37 +44,16 @@
 		<form action="${rota}" method="${metodo}">
 
 			<div class="form-group">
-				<label>Conta:</label> <input type="text" class="form-control"
-					placeholder="Informe a descrição" value="${conta.descricao}"
-					name="descricao" placeholder="Entre com o nome da conta">
+				<label>Código:</label> <input type="text" class="form-control"
+					placeholder="Informe o código do Departamento" value="${depto.codDepto}"
+					name="codDepto" placeholder="Entre com o código do Departamento">
 			</div>
-
-			<c:if test="${not empty conta}">
-
-				<div class="form-group">
-					<label>Tipo da Conta:</label> <input type="text"
-						class="form-control" value="${conta.tipoConta.descricao}" name="tipoConta"
-						placeholder="Entre com o tipo da conta">
-				</div>
-
-			</c:if>
-
-			<c:if test="${empty conta}">
-
-				<select name="tipoConta" class="form-control">
-
-					<option value=""></option>
-					<c:forEach items="${tipoContaList}" var="tipoConta">
-						<option value="${tipoConta}">
-							<c:out value="${tipoConta.descricao}"></c:out>
-						</option>
-					</c:forEach>
-
-				</select>
-
-
-			</c:if>
-
+			
+			<div class="form-group">
+				<label>Descrição:</label> <input type="text" class="form-control"
+					placeholder="Informe a descrição do Departamento" value="${depto.descricao}"
+					name="descricao" placeholder="Entre com o nome do usuário">
+			</div>
 
 			<button type="submit" class="btn btn-default">${botao}</button>
 		</form>

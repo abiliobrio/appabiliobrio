@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <title>Bootstrap Example</title>
 <meta charset="utf-8">
@@ -27,19 +27,19 @@
 		</c:if>
 
 		<h3>
-			<a href="/usuario">Incluir um novo usuário</a>
+			<a href="/depto">Incluir um novo departamento</a>
 		</h3>
 
-		<c:if test="${not empty usuarios}">
+		<c:if test="${not empty deptos}">
 
-			<h2>Lista de Usuários: ${usuarios.size()}</h2>
+			<h2>Lista de Departamentos: ${deptos.size()}</h2>
 
-			<form action="/usuario/ordenar" method="post">
+			<form action="/depto/ordenar" method="post">
 				<div class="input-group">
 
 					<select name="sortBy" class="form-control">
-						<option value="loginUsuario">Login</option>
-						<option value="nomeUsuario">Nome</option>
+						<option value="codDepto">Código</option>
+						<option value="descricao">Descrição</option>
 					</select>
 
 					<div class="input-group-btn">
@@ -54,32 +54,28 @@
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Login</th>
-						<th>Nome</th>
-						<th>E-mail</th>
-						<th>Tipo</th>
+						<th>Código</th>
+						<th>Descrição</th>
 						<th>Status</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="usuario" items="${usuarios}">
+					<c:forEach var="depto" items="${deptos}">
 						<tr>
-							<td>${usuario.id}</td>
-							<td>${usuario.loginUsuario}</td>
-							<td>${usuario.nomeUsuario}</td>
-							<td>${usuario.emailUsuario}</td>
-							<td>${usuario.tipoUsuario.descricao}</td>
-							<td>${usuario.status.descricao}</td>
-							<td><a href="/usuario/${usuario.id}/excluir">Excluir</a></td>
-							<td><a href="/usuario/${usuario.id}/consultar">Detalhar</a></td>
+							<td>${depto.id}</td>
+							<td>${depto.codDepto}</td>
+							<td>${depto.descricao}</td>
+							<td>${depto.status.descricao}</td>
+							<td><a href="/depto/${depto.id}/excluir">Excluir</a></td>
+							<td><a href="/depto/${depto.id}/consultar">Detalhar</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</c:if>
-		<c:if test="${empty usuarios}">
-			<h2>Não existem usuários cadastrados!!!</h2>
+		<c:if test="${empty deptos}">
+			<h2>Não existem departamentos cadastrados!!!</h2>
 		</c:if>
 
 	</div>
